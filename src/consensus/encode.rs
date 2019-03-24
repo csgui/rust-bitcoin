@@ -524,6 +524,7 @@ macro_rules! impl_array {
 
 impl_array!(2);
 impl_array!(4);
+impl_array!(6);
 impl_array!(8);
 impl_array!(10);
 impl_array!(12);
@@ -600,6 +601,9 @@ impl_vec!(u64);
 #[cfg(feature = "std")] impl_vec!(Inventory);
 #[cfg(feature = "std")] impl_vec!((u32, Address));
 #[cfg(feature = "std")] impl_vec!(AddrV2Message);
+#[cfg(feature = "std")] impl_vec!(VarInt);
+#[cfg(feature = "std")] impl_vec!(::util::bip152::ShortId);
+#[cfg(feature = "std")] impl_vec!(::util::bip152::PrefilledTransaction);
 
 pub(crate) fn consensus_encode_with_size<S: io::Write>(data: &[u8], mut s: S) -> Result<usize, io::Error> {
     let vi_len = VarInt(data.len() as u64).consensus_encode(&mut s)?;
